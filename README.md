@@ -55,3 +55,35 @@ the specific version and features may vary depending on what you need
 - `cargo install cargo-expand`
 - see the macro output `cargo expand`
 - if nightly toolchain is required: `rustup toolchain install nightly --allow-downgrade`
+
+[test endpoint]
+- test GET /health_check: `curl -v http://127.0.0.1:8000/health_check`
+- insominia
+
+```rust
+// some request handler signatures
+
+async fn greet(req: HttpRequest) -> impl Responder {
+  let name = req.match_info().get("name").unwrap_or("World"); format!("Hello {}!", &name)
+}
+
+async fn health_check(_req: HttpRequest) -> impl Responder {
+    HttpResponse::Ok().finish()
+}
+
+async fn health_check() -> impl Responder {
+    HttpResponse::Ok()
+}
+```
+
+automate testing to save time, run in CI to prevent regressions
+
+although Actix-web has built-in solutions, we want integration tests to be decoupled
+
+it's better if integration test can be framework-agnostic
+
+a black-box solution
+- launch our app at the begining of each test
+- use `reqwest` as HTTP client
+
+anything under `/tests` are going to be in its own binary, so as the doc tests
