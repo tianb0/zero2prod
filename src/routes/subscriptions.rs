@@ -1,6 +1,6 @@
 use actix_web::{web, HttpResponse, Responder};
 use chrono::Utc;
-use sqlx::{PgConnection, PgPool};
+use sqlx::{Executor, PgConnection, PgPool};
 use uuid::Uuid;
 
 #[derive(serde::Deserialize)]
@@ -30,8 +30,8 @@ pub async fn subscribe(
     {
         Ok(_) => HttpResponse::Ok(),
         Err(e) => {
-                println!("Failed to execute query: {}" ,e);
-HttpResponse::InternalServerError()
-            },
+            println!("Failed to execute query: {}", e);
+            HttpResponse::InternalServerError()
+        }
     }
 }

@@ -16,7 +16,7 @@ config = "0.13.3"
 false = "0.0.0"
 features = "0.10.0"
 serde = { version = "1.0.170", features = ["derive"] }
-sqlx = { version = "0.7.0", features = ["runtime-tokio-rustls", "macros", "postgres", "uuid", "chrono", "migrate"] }
+sqlx = { version = "0.7.0", default-features = false, features = ["runtime-tokio-rustls", "macros", "postgres", "uuid", "chrono", "migrate"] }
 tokio = { version = "1.29.1", features = ["macros", "rt-multi-thread"] }
 uuid = { version = "1.4.0", features = ["v4"] }
 

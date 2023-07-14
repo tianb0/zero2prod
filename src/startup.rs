@@ -10,7 +10,6 @@ pub fn run(
     // connection: PgConnection,
     db_pool: PgPool,
 ) -> Result<Server, std::io::Error> {
-
     // wrap the connection in a smart pointer
     let connection = web::Data::new(db_pool);
 
