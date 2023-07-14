@@ -13,6 +13,7 @@ actix-web = "4.3.1"
 chrono = "0.4.26"
 clock = "0.3.2"
 config = "0.13.3"
+env_logger = "0.10.0"
 false = "0.0.0"
 features = "0.10.0"
 serde = { version = "1.0.170", features = ["derive"] }
