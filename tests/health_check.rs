@@ -135,9 +135,10 @@ async fn spawn_app() -> TestApp {
 
 pub async fn configure_database(config: &DatabaseSettings) -> PgPool {
     // Create database
-    let mut connection = PgConnection::connect(&config.connection_string_without_db().expose_secret())
-        .await
-        .expect("Failed to connect to Postgres");
+    let mut connection =
+        PgConnection::connect(&config.connection_string_without_db().expose_secret())
+            .await
+            .expect("Failed to connect to Postgres");
     // `sqlx::Executor` needs to be brought to the scope to use the `execute` method
     connection
         .execute(format!(r#"CREATE DATABASE "{}";"#, config.database_name).as_str())
